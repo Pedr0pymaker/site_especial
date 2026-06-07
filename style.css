@@ -1,0 +1,442 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:
+    radial-gradient(
+        circle at top left,
+        rgba(255,255,255,.12),
+        transparent 30%
+    ),
+    radial-gradient(
+        circle at bottom right,
+        rgba(192,132,252,.2),
+        transparent 35%
+    ),
+    linear-gradient(
+        135deg,
+        #1f1036,
+        #2e1459,
+        #4c1d95
+    );
+
+    color:white;
+}
+
+/* ==========================
+   FUNDO
+========================== */
+
+.background{
+    position:fixed;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    z-index:-10;
+    overflow:hidden;
+}
+
+.spiral{
+    border-radius:50%;
+
+    border:
+    2px solid
+    rgba(255,255,255,.15);
+
+    box-shadow:
+    0 0 20px rgba(192,132,252,.2),
+    inset 0 0 20px rgba(192,132,252,.15);
+}
+
+.spiral1{
+    width:700px;
+    height:700px;
+    top:-250px;
+    left:-250px;
+    animation:rotateSpiral 35s linear infinite;
+}
+
+.spiral2{
+    width:500px;
+    height:500px;
+    bottom:-150px;
+    right:-150px;
+    animation:rotateSpiralReverse 28s linear infinite;
+}
+
+.spiral3{
+    width:350px;
+    height:350px;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    animation:pulseSpiral 8s ease-in-out infinite;
+}
+
+@keyframes rotateSpiral{
+    from{
+        transform:rotate(0deg);
+    }
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+@keyframes rotateSpiralReverse{
+    from{
+        transform:rotate(360deg);
+    }
+    to{
+        transform:rotate(0deg);
+    }
+}
+
+@keyframes pulseSpiral{
+    0%{
+        transform:translate(-50%,-50%) scale(1);
+    }
+
+    50%{
+        transform:translate(-50%,-50%) scale(1.15);
+    }
+
+    100%{
+        transform:translate(-50%,-50%) scale(1);
+    }
+}
+
+/* ==========================
+   PÁGINAS
+========================== */
+
+.page{
+    display:none;
+    min-height:100vh;
+    width:100%;
+    padding:30px;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    text-align:center;
+    animation:fadeIn .8s ease;
+}
+
+.page.active{
+    display:flex;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+h1{
+    font-family:'Cinzel',serif;
+    font-size:2.3rem;
+    margin-bottom:30px;
+}
+
+h2{
+    font-family:'Cinzel',serif;
+    max-width:800px;
+    margin-bottom:25px;
+    line-height:1.4;
+}
+
+p{
+    margin-bottom:20px;
+}
+
+/* ==========================
+   BOTÕES
+========================== */
+
+.buttons{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+.btn-primary,
+.btn-secondary{
+
+    border:none;
+    cursor:pointer;
+    padding:14px 28px;
+    border-radius:14px;
+    font-size:1rem;
+    transition:.3s;
+}
+
+.btn-primary{
+    background:#7c3aed;
+    color:white;
+}
+
+.btn-primary:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 20px rgba(124,58,237,.6);
+}
+
+.btn-secondary{
+    background:#222;
+    color:white;
+}
+
+.btn-secondary:hover{
+    background:#333;
+}
+
+.hidden{
+    display:none;
+}
+
+/* ==========================
+   INPUTS
+========================== */
+
+input{
+    width:100%;
+    max-width:400px;
+
+    padding:14px;
+
+    margin-top:10px;
+    margin-bottom:20px;
+
+    border:none;
+    border-radius:12px;
+
+    background:#171717;
+    color:white;
+
+    font-size:1rem;
+}
+
+.form-group{
+    margin-bottom:25px;
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+label{
+    margin-bottom:8px;
+}
+
+.message{
+    min-height:40px;
+    margin-top:15px;
+    font-weight:600;
+    color:#c084fc;
+}
+
+/* ==========================
+   CARDS
+========================== */
+
+.cards-container{
+    width:100%;
+    max-width:1000px;
+
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+    gap:20px;
+
+    margin-top:30px;
+}
+
+.date-card{
+
+    height:340px;
+
+    border-radius:18px;
+
+    background:
+    linear-gradient(
+        180deg,
+        rgba(255,255,255,.15),
+        rgba(255,255,255,.05)
+    );
+
+    border:
+    2px solid
+    rgba(255,255,255,.25);
+
+    backdrop-filter:blur(15px);
+
+    position:relative;
+
+    overflow:hidden;
+
+    transition:.4s;
+}
+
+.date-card::before{
+    content:"";
+
+    position:absolute;
+
+    width:250px;
+    height:250px;
+
+    border-radius:50%;
+
+    border:1px solid rgba(255,255,255,.05);
+
+    animation:rotateSpiral 15s linear infinite;
+}
+
+.date-card::after{
+
+    content:"";
+
+    position:absolute;
+
+    top:10px;
+    left:10px;
+    right:10px;
+    bottom:10px;
+
+    border:
+
+    1px solid
+    rgba(255,215,0,.5);
+
+    border-radius:12px;
+}
+
+.date-card:hover{
+
+    transform:
+    translateY(-12px)
+    rotate(-2deg)
+    scale(1.05);
+
+    box-shadow:
+
+    0 0 30px rgba(192,132,252,.6),
+
+    0 0 60px rgba(192,132,252,.4);
+}
+
+.date-card.selected{
+
+    border:
+    2px solid #f5d0fe;
+
+    box-shadow:
+
+    0 0 20px #f5d0fe,
+
+    0 0 50px #c084fc,
+
+    0 0 80px #9333ea;
+}
+
+.card-content{
+    padding:20px;
+    z-index:2;
+}
+
+.card-content h3{
+    font-size:3rem;
+    margin-bottom:15px;
+}
+
+.card-content p{
+    font-size:1rem;
+    line-height:1.5;
+}
+
+.card-content::before{
+
+    content:"✦";
+
+    display:block;
+
+    font-size:2rem;
+
+    margin-bottom:10px;
+
+    color:#f5d0fe;
+}
+
+/* ==========================
+   TELA FINAL
+========================== */
+
+.final-card{
+
+    width:100%;
+    max-width:700px;
+
+    padding:35px;
+
+    border-radius:25px;
+
+    background:
+    rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.1);
+
+    backdrop-filter:blur(12px);
+}
+
+.final-card h3{
+    color:#c084fc;
+    margin-bottom:18px;
+}
+
+.special-text{
+    font-size:1.2rem;
+    color:#f5c2ff;
+}
+
+small{
+    opacity:.7;
+    display:block;
+    margin-top:25px;
+}
+
+/* ==========================
+   MOBILE
+========================== */
+
+@media(max-width:768px){
+
+    h1{
+        font-size:1.8rem;
+    }
+
+    h2{
+        font-size:1.2rem;
+    }
+
+    .page{
+        padding:20px;
+    }
+
+    .cards-container{
+        grid-template-columns:1fr;
+    }
+
+    .date-card{
+        min-height:180px;
+    }
+
+}
